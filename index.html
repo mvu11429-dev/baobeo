@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Baobeo 🌸</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+
+            /* Nền hoa anh đào */
+            background:
+                linear-gradient(
+                    rgba(255, 182, 203, 0.25),
+                    rgba(255, 225, 235, 0.45)
+                ),
+                url("https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Lớp kính mờ */
+        .container {
+            width: 90%;
+            max-width: 420px;
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(90, 40, 60, 0.25);
+        }
+
+        /* Tên */
+        .name {
+            color: white;
+            font-size: 38px;
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 3px 10px rgba(80, 30, 50, 0.5);
+        }
+
+        .description {
+            color: white;
+            font-size: 15px;
+
+            margin-bottom: 30px;
+
+            text-shadow: 0 2px 6px rgba(80,30,50,0.5);
+        }
+
+        /* Nút mạng xã hội */
+        .social-link {
+            display: block;
+
+            width: 100%;
+
+            margin: 16px 0;
+            padding: 16px;
+
+            border-radius: 50px;
+
+            text-decoration: none;
+
+            color: #5c3444;
+
+            background: rgba(255,255,255,0.82);
+
+            font-size: 18px;
+            font-weight: bold;
+
+            box-shadow:
+                0 7px 20px rgba(80,30,50,0.18);
+
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px) scale(1.03);
+
+            background: white;
+
+            box-shadow:
+                0 12px 30px rgba(80,30,50,0.3);
+        }
+
+        /* Cánh hoa */
+        .petal {
+            position: fixed;
+
+            top: -30px;
+
+            width: 14px;
+            height: 10px;
+
+            background: #ffb7cf;
+
+            border-radius: 100% 0 100% 0;
+
+            opacity: 0.85;
+
+            pointer-events: none;
+
+            z-index: 10;
+
+            animation:
+                falling linear infinite,
+                swinging ease-in-out infinite;
+        }
+
+        /* Hoa rơi */
+        @keyframes falling {
+            0% {
+                top: -30px;
+            }
+
+            100% {
+                top: 110vh;
+            }
+        }
+
+        /* Hoa lắc sang hai bên */
+        @keyframes swinging {
+            0% {
+                margin-left: 0;
+                transform: rotate(0deg);
+            }
+
+            25% {
+                margin-left: 50px;
+                transform: rotate(90deg);
+            }
+
+            50% {
+                margin-left: -40px;
+                transform: rotate(180deg);
+            }
+
+            75% {
+                margin-left: 60px;
+                transform: rotate(270deg);
+            }
+
+            100% {
+                margin-left: 0;
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Điện thoại */
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+
+            .social-link {
+                font-size: 17px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="name">
+            🌸 Baobeo 🌸
+        </div>
+
+        <div class="description">
+            Welcome to my world ✨
+        </div>
+
+        <!-- TikTok -->
+        <a
+            class="social-link"
+            href="https://www.tiktok.com/@baobeo1122"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            TikTok
+        </a>
+
+        <!-- Facebook -->
+        <a
+            class="social-link"
+            href="https://www.facebook.com/profile.php?id=61584730479522"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Facebook
+        </a>
+
+    </div>
+
+
+    <script>
+
+        /* ==========================
+           TẠO CÁNH HOA ANH ĐÀO
+           ========================== */
+
+        const totalPetals = 40;
+
+        const colors = [
+            "#ffb7ce",
+            "#ffc4d6",
+            "#ff9fbd",
+            "#ffd1df",
+            "#fff0f5"
+        ];
+
+        for (let i = 0; i < totalPetals; i++) {
+
+            const petal = document.createElement("div");
+
+            petal.className = "petal";
+
+            /* Vị trí ngang ngẫu nhiên */
+            petal.style.left =
+                Math.random() * 100 + "vw";
+
+            /* Kích thước ngẫu nhiên */
+            const size =
+                Math.random() * 8 + 8;
+
+            petal.style.width =
+                size + "px";
+
+            petal.style.height =
+                size * 0.75 + "px";
+
+            /* Màu ngẫu nhiên */
+            petal.style.background =
+                colors[
+                    Math.floor(
+                        Math.random() * colors.length
+                    )
+                ];
+
+            /* Tốc độ rơi */
+            petal.style.animationDuration =
+                (6 + Math.random() * 😎 + "s";
+
+            /* Thời điểm bắt đầu */
+            petal.style.animationDelay =
+                -(Math.random() * 10) + "s";
+
+            /* Độ trong suốt */
+            petal.style.opacity =
+                0.5 + Math.random() * 0.5;
+
+            document.body.appendChild(petal);
+        }
+
+    </script>
+
+</body>
+</html>
+www.tiktok.com
